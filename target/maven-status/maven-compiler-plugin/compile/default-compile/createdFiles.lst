@@ -2,11 +2,17 @@ com\example\SpringBoot\repository\ExperienciaInterface.class
 com\example\SpringBoot\model\Experiencia.class
 com\example\SpringBoot\model\Proyectos.class
 com\example\SpringBoot\controller\Controller.class
+com\example\SpringBoot\model\Role.class
+com\example\SpringBoot\Application$CorsConfig.class
 com\example\SpringBoot\Application.class
 com\example\SpringBoot\repository\PersonaInterface.class
 com\example\SpringBoot\service\PortafolioClase.class
 com\example\SpringBoot\model\Persona.class
 com\example\SpringBoot\model\Educacion.class
 com\example\SpringBoot\repository\ProyectosInterface.class
+com\example\SpringBoot\security\config\JwtService.class
+com\example\SpringBoot\security\config\SecurityConfig.class
+com\example\SpringBoot\security\config\AppConfig.class
 com\example\SpringBoot\service\PortafolioInterface.class
+com\example\SpringBoot\security\config\JwtAuthenticationFilter.class
 com\example\SpringBoot\repository\EducacionInterface.class
