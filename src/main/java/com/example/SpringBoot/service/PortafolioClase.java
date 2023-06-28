@@ -4,24 +4,14 @@
  */
 package com.example.SpringBoot.service;
 
-//import com.example.SpringBoot.model.Educacion;
-//import com.example.SpringBoot.model.Experiencia;
-import com.example.SpringBoot.model.Educacion;
-import com.example.SpringBoot.model.Experiencia;
+
 import com.example.SpringBoot.model.Persona;
-import com.example.SpringBoot.model.Proyectos;
-//import com.example.SpringBoot.model.Proyectos;
-import com.example.SpringBoot.repository.EducacionInterface;
-import com.example.SpringBoot.repository.ExperienciaInterface;
 import com.example.SpringBoot.repository.PersonaInterface;
-import com.example.SpringBoot.repository.ProyectosInterface;
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Set;
-//import static com.fasterxml.jackson.databind.cfg.CoercionInputShape.String;
-//import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
@@ -29,28 +19,38 @@ import org.springframework.stereotype.Service;
 public class PortafolioClase implements PortafolioInterface {
     
     @Autowired
-    public PersonaInterface persoRepo;
-    public ExperienciaInterface experRepo;
-
-    /**
-     *
-     */
-    public EducacionInterface eduRepo;
-    public ProyectosInterface proyRepo;
+    private PersonaInterface persoRepo;
     
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+    
+    @Autowired
+    private AuthenticationManager authenticationManager;
+
+   
+    
+   
     
    
 
     @Override
-    public List <Persona> brindarDatos( ) {
-    return persoRepo.findAll();
+    public Optional<Persona> brindarDatos(String mail ) {
+     
+   return persoRepo.findByMail(mail);
+    
+  
+       
     }
 
  
     @Override
     //problema con la instanciacion pero creo que va por ahí
+  
     public void agregarPersona(Persona per) {
+    
+       per.setPassword(passwordEncoder.encode(per.getPassword()));
        persoRepo.save(per);
+       
       
        
     }
@@ -59,6 +59,21 @@ public class PortafolioClase implements PortafolioInterface {
     public void modificarPersona(Persona per) {
       persoRepo.save(per);
       
+    }
+
+    @Override
+    public void autenticarPersona(Persona per) {
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
+        per.getMail(),
+        per.getPassword())
+        );
+        persoRepo.findByMail(per.getMail())
+        .orElseThrow();
+         
+      
+        
+    
+                
     }
         
   

@@ -5,9 +5,7 @@
 package com.example.SpringBoot.repository;
 
 import com.example.SpringBoot.model.Persona;
-//import java.util.List;
-//import java.util.Optional;
-//import java.util.Optional;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -17,7 +15,7 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface PersonaInterface extends JpaRepository <Persona,Long>{   
-//Persona findByid(Long id);
+Optional <Persona> findByMail(String mail);
     
    
     

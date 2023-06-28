@@ -8,13 +8,15 @@ package com.example.SpringBoot.service;
 //import com.example.SpringBoot.model.Experiencia;
 import com.example.SpringBoot.model.Persona;
 import java.util.List;
+import java.util.Optional;
 //import com.example.SpringBoot.model.Proyectos;
 //import java.util.List;
 
 
 public interface PortafolioInterface {
     
-   List <Persona> brindarDatos();
+    
+   public Optional<Persona> brindarDatos(String mail); //private o public
     //void modificarExperiencia();
     //void eliminarExperiencia();
     //void agregarExperiencia();
@@ -26,6 +28,7 @@ public interface PortafolioInterface {
     //void eliminarProyectos();
     void agregarPersona(Persona per);
     void modificarPersona (Persona per);
+    void autenticarPersona(Persona per);
     
     
     
